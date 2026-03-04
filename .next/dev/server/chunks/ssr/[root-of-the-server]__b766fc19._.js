@@ -14,6 +14,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$next$2f$head$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/allsafe-parents/node_modules/next/head.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/allsafe-parents/node_modules/react-icons/fa/index.esm.js [ssr] (ecmascript)");
 ;
 ;
 ;
@@ -112,49 +113,111 @@ function Home() {
 
           .hero {
             background: var(--navy-deep);
-            padding: 100px 8% 140px;
+            padding: 100px 8% 100px;
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
           }
+
+          /* Tech background elements */
+          .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+              radial-gradient(circle at 20% 30%, rgba(29, 78, 216, 0.15) 0%, transparent 30%),
+              radial-gradient(circle at 80% 70%, rgba(15, 118, 110, 0.15) 0%, transparent 30%),
+              linear-gradient(45deg, transparent 65%, rgba(255,255,255,0.03) 100%);
+            pointer-events: none;
+          }
+
+          /* Circuit lines pattern */
+          .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+              linear-gradient(rgba(29, 78, 216, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(29, 78, 216, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 70%);
+            pointer-events: none;
+          }
+
+          /* Floating tech icons */
+          .tech-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.1);
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+          }
+
+          @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+          }
+
           .hero h1 {
             font-size: clamp(2.8rem, 7vw, 4.8rem);
             font-weight: 800;
             letter-spacing: -1.5px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
           }
+
           .hero .sub {
             font-size: 1.3rem;
             color: #b4d0ff;
             max-width: 750px;
-            margin: 1rem auto 2rem;
+            margin: 1.5rem auto 2rem;
+            position: relative;
+            z-index: 2;
           }
 
-          /* domain strip */
           .domain-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 2rem 3rem;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(8px);
-            margin: 20px auto 30px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin: 40px auto 30px;
             padding: 1rem 2.5rem;
             border-radius: 60px;
             width: fit-content;
-            border: 1px solid var(--border-soft);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
           }
+
           .domain-item a {
             text-decoration: none;
             font-weight: 600;
-            color: var(--navy-deep);
+            color: white;
             font-size: 1rem;
+            transition: color 0.3s;
           }
           .domain-item a:hover { color: var(--allsafe-blue); }
 
-          /* catalog grid */
           .catalog {
             max-width: 1300px;
-            margin: -80px auto 80px;
+            margin: 40px auto 80px;
             padding: 0 24px;
+            position: relative;
+            z-index: 10;
           }
 
           .section-title {
@@ -262,13 +325,11 @@ function Home() {
             color: var(--navy-mid);
           }
 
-          /* color variants */
           .card-allsafe { --card-accent: #1d4ed8; }
           .card-shonet { --card-accent: #0f766e; }
           .card-tool { --card-accent: #b45309; }
           .card-docs { --card-accent: #4b5563; }
 
-          /* footer */
           footer {
             background: var(--navy-deep);
             color: white;
@@ -301,6 +362,46 @@ function Home() {
           @media (max-width: 700px) {
             .nav-links { display: none; }
             .product-grid { grid-template-columns: 1fr; }
+            .hero { padding: 80px 5% 80px; }
+            .catalog { margin: 20px auto 60px; }
+            .domain-row {
+              gap: 1rem;
+              padding: 0.8rem 1.2rem;
+              margin: 20px auto 20px;
+            }
+            .domain-item a {
+              font-size: 0.9rem;
+            }
+            .section-title {
+              font-size: 1.5rem;
+              margin: 2rem 0 1rem 0.5rem;
+            }
+            .product-card {
+              padding: 1.5rem 1.2rem;
+            }
+            .product-card h3 {
+              font-size: 1.6rem;
+            }
+            .footer-grid {
+              grid-template-columns: 1fr;
+              gap: 2rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .domain-row {
+              flex-direction: column;
+              align-items: center;
+              gap: 0.8rem;
+              width: 100%;
+              border-radius: 30px;
+            }
+            .hero h1 {
+              font-size: 2.2rem;
+            }
+            .hero .sub {
+              font-size: 1.1rem;
+            }
           }
         `
                     }, void 0, false, {
@@ -324,14 +425,14 @@ function Home() {
                                 className: "logo-box"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 284,
+                                lineNumber: 384,
                                 columnNumber: 11
                             }, this),
                             "ALLSAFEX"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 283,
+                        lineNumber: 383,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -342,7 +443,7 @@ function Home() {
                                 children: "Allsafe‑Access"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 288,
+                                lineNumber: 388,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -350,7 +451,7 @@ function Home() {
                                 children: "allsafe‑auth"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 289,
+                                lineNumber: 389,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -358,7 +459,7 @@ function Home() {
                                 children: "allsafe‑flow"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 290,
+                                lineNumber: 390,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -366,7 +467,7 @@ function Home() {
                                 children: "Shonet RMS"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 291,
+                                lineNumber: 391,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -374,37 +475,109 @@ function Home() {
                                 children: "allsafe‑otp"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 292,
+                                lineNumber: 392,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 287,
+                        lineNumber: 387,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                lineNumber: 282,
+                lineNumber: 382,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("header", {
                 className: "hero",
                 children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaShieldAlt"], {
+                        className: "tech-icon",
+                        style: {
+                            top: '15%',
+                            left: '10%',
+                            animationDelay: '0s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 398,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaServer"], {
+                        className: "tech-icon",
+                        style: {
+                            top: '25%',
+                            right: '15%',
+                            animationDelay: '1s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 399,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaTerminal"], {
+                        className: "tech-icon",
+                        style: {
+                            bottom: '20%',
+                            left: '20%',
+                            animationDelay: '2s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 400,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaWifi"], {
+                        className: "tech-icon",
+                        style: {
+                            top: '40%',
+                            right: '25%',
+                            animationDelay: '1.5s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 401,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaUsers"], {
+                        className: "tech-icon",
+                        style: {
+                            bottom: '30%',
+                            right: '10%',
+                            animationDelay: '2.5s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 402,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$allsafe$2d$parents$2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$esm$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["FaShieldAlt"], {
+                        className: "tech-icon",
+                        style: {
+                            top: '60%',
+                            left: '15%',
+                            animationDelay: '0.5s'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
+                        lineNumber: 403,
+                        columnNumber: 9
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
                         children: [
                             "Unified Allsafe‑Access &",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("br", {}, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 297,
+                                lineNumber: 405,
                                 columnNumber: 37
                             }, this),
                             "balanced product ecosystem"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 297,
+                        lineNumber: 405,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -412,7 +585,7 @@ function Home() {
                         children: "PyPI · npm · live domains · all documentation linked"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 298,
+                        lineNumber: 406,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -434,13 +607,13 @@ function Home() {
                                             children: "allsafe‑access.allsafex.com"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 302,
+                                            lineNumber: 409,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 302,
+                                    lineNumber: 409,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -454,13 +627,13 @@ function Home() {
                                             children: "shonet.allsafex.com"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 303,
+                                            lineNumber: 410,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 303,
+                                    lineNumber: 410,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -474,13 +647,13 @@ function Home() {
                                             children: "pypi.org/allsafe-auth"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 304,
+                                            lineNumber: 411,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 304,
+                                    lineNumber: 411,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -494,13 +667,13 @@ function Home() {
                                             children: "npmjs/allsafe-flow"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 305,
+                                            lineNumber: 412,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 305,
+                                    lineNumber: 412,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -514,30 +687,30 @@ function Home() {
                                             children: "pypi.org/allsafe-otp"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 306,
+                                            lineNumber: 413,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 306,
+                                    lineNumber: 413,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                            lineNumber: 301,
+                            lineNumber: 408,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 300,
+                        lineNumber: 407,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                lineNumber: 296,
+                lineNumber: 396,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("main", {
@@ -549,7 +722,7 @@ function Home() {
                         children: "🛡️ Allsafe‑Access suite (unified)"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 313,
+                        lineNumber: 419,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -563,14 +736,14 @@ function Home() {
                                         children: "🚪 CENTRAL GATEWAY"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 317,
+                                        lineNumber: 422,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "allsafe‑proxy"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 318,
+                                        lineNumber: 423,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -578,21 +751,21 @@ function Home() {
                                         children: "Secure intermediary: agent management, mTLS, RBAC, audit logs, session relay."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 319,
+                                        lineNumber: 424,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                         className: "link-group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                                href: "https://www.allsafex.com/docs/allsafe-proxy/overview",
+                                                href: "https://allsafe-access.allsafex.com/docs/allsafe-proxy/overview",
                                                 target: "_blank",
                                                 rel: "noopener",
                                                 className: "primary-link",
                                                 children: "documentation →"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 321,
+                                                lineNumber: 426,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -600,19 +773,19 @@ function Home() {
                                                 children: "core"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 322,
+                                                lineNumber: 427,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 320,
+                                        lineNumber: 425,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 316,
+                                lineNumber: 421,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -623,14 +796,14 @@ function Home() {
                                         children: "💻 USER INTERFACE"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 328,
+                                        lineNumber: 432,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "allsafe‑cli"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 329,
+                                        lineNumber: 433,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -638,31 +811,31 @@ function Home() {
                                         children: "Interactive shell, MFA, agent discovery, auto‑completion, session management."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 330,
+                                        lineNumber: 434,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                         className: "link-group",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                            href: "https://www.allsafex.com/docs/allsafe-cli/overview",
+                                            href: "https://allsafe-access.allsafex.com/docs/allsafe-cli/overview",
                                             target: "_blank",
                                             rel: "noopener",
                                             className: "primary-link",
                                             children: "documentation →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 332,
+                                            lineNumber: 436,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 331,
+                                        lineNumber: 435,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 327,
+                                lineNumber: 431,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -673,14 +846,14 @@ function Home() {
                                         children: "📡 REMOTE NODE"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 338,
+                                        lineNumber: 441,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "allsafe‑agent"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 339,
+                                        lineNumber: 442,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -688,31 +861,31 @@ function Home() {
                                         children: "Installed on remote machines, registers with proxy, enables secure shell sessions."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 340,
+                                        lineNumber: 443,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                         className: "link-group",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                            href: "https://www.allsafex.com/docs/allsafe-agent/overview",
+                                            href: "https://allsafe-access.allsafex.com/docs/allsafe-agent/overview",
                                             target: "_blank",
                                             rel: "noopener",
                                             className: "primary-link",
                                             children: "documentation →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 342,
+                                            lineNumber: 445,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 341,
+                                        lineNumber: 444,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 337,
+                                lineNumber: 440,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -723,14 +896,14 @@ function Home() {
                                         children: "🛠️ ADMIN TOOL"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 348,
+                                        lineNumber: 450,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "allsafe‑admin"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 349,
+                                        lineNumber: 451,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -738,37 +911,37 @@ function Home() {
                                         children: "Manage users, active sessions, audit logs, and system configuration."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 350,
+                                        lineNumber: 452,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                         className: "link-group",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                            href: "https://www.allsafex.com/docs/allsafe-admin/overview",
+                                            href: "https://allsafe-access.allsafex.com/docs/allsafe-admin/overview",
                                             target: "_blank",
                                             rel: "noopener",
                                             className: "primary-link",
                                             children: "documentation →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 352,
+                                            lineNumber: 454,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 351,
+                                        lineNumber: 453,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 347,
+                                lineNumber: 449,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 314,
+                        lineNumber: 420,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -777,7 +950,7 @@ function Home() {
                         children: "🔐 allsafe‑auth (PyPI)"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 358,
+                        lineNumber: 459,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -790,14 +963,14 @@ function Home() {
                                     children: "📦 PYPI · v1.1.8"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 361,
+                                    lineNumber: 462,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                     children: "allsafe‑auth"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 362,
+                                    lineNumber: 463,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -805,7 +978,7 @@ function Home() {
                                     children: "TOTP, HOTP, Active Directory (LDAP), QR generator, Django + Inertia integration. One library."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 363,
+                                    lineNumber: 464,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -819,7 +992,7 @@ function Home() {
                                             children: "PyPI →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 365,
+                                            lineNumber: 466,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -830,7 +1003,7 @@ function Home() {
                                             children: "docs"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 366,
+                                            lineNumber: 467,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -838,13 +1011,13 @@ function Home() {
                                             children: "MIT"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 367,
+                                            lineNumber: 468,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 364,
+                                    lineNumber: 465,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -856,18 +1029,18 @@ function Home() {
                                     children: "maintainer: Daniel Destaw"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 369,
+                                    lineNumber: 470,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                            lineNumber: 360,
+                            lineNumber: 461,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 359,
+                        lineNumber: 460,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -876,7 +1049,7 @@ function Home() {
                         children: "⚙️ allsafe‑flow (npm)"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 374,
+                        lineNumber: 474,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -889,14 +1062,14 @@ function Home() {
                                     children: "⚙️ NPM · v1.1.4"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 377,
+                                    lineNumber: 477,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                     children: "allsafe‑flow"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 378,
+                                    lineNumber: 478,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -904,7 +1077,7 @@ function Home() {
                                     children: "Declarative service orchestration: YAML, colored logs, health checks, start/stop/restart."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 379,
+                                    lineNumber: 479,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -918,7 +1091,7 @@ function Home() {
                                             children: "npm →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 381,
+                                            lineNumber: 481,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -929,7 +1102,7 @@ function Home() {
                                             children: "CLI docs"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 382,
+                                            lineNumber: 482,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -937,24 +1110,24 @@ function Home() {
                                             children: "devtools"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 383,
+                                            lineNumber: 483,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 380,
+                                    lineNumber: 480,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                            lineNumber: 376,
+                            lineNumber: 476,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 375,
+                        lineNumber: 475,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -963,7 +1136,7 @@ function Home() {
                         children: "🍽️ Shonet RMS (hospitality)"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 389,
+                        lineNumber: 488,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -977,14 +1150,14 @@ function Home() {
                                         children: "🏬 WINDOWS POS"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 393,
+                                        lineNumber: 491,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "Shonet Master"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 394,
+                                        lineNumber: 492,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -992,7 +1165,7 @@ function Home() {
                                         children: "Zero‑internet POS, offline database, LAN sync to waiter apps."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 395,
+                                        lineNumber: 493,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1006,7 +1179,7 @@ function Home() {
                                                 children: "shonet.allsafex.com →"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 397,
+                                                lineNumber: 495,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -1014,19 +1187,19 @@ function Home() {
                                                 children: "live"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 398,
+                                                lineNumber: 496,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 396,
+                                        lineNumber: 494,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 392,
+                                lineNumber: 490,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1037,14 +1210,14 @@ function Home() {
                                         children: "📱 ANDROID APK"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 403,
+                                        lineNumber: 500,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "Shonet Waiter"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 404,
+                                        lineNumber: 501,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1052,7 +1225,7 @@ function Home() {
                                         children: "Order taking, table management, works offline, syncs via LAN."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 405,
+                                        lineNumber: 502,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1065,18 +1238,18 @@ function Home() {
                                             children: "download APK →"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 407,
+                                            lineNumber: 504,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 406,
+                                        lineNumber: 503,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 402,
+                                lineNumber: 499,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1087,14 +1260,14 @@ function Home() {
                                         children: "🍳 KITCHEN"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 412,
+                                        lineNumber: 508,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "Kitchen Display"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 413,
+                                        lineNumber: 509,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1102,7 +1275,7 @@ function Home() {
                                         children: "Real‑time orders, prep times, no internet needed."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 414,
+                                        lineNumber: 510,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1115,18 +1288,18 @@ function Home() {
                                             children: "view demo"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 416,
+                                            lineNumber: 512,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 415,
+                                        lineNumber: 511,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 411,
+                                lineNumber: 507,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1137,14 +1310,14 @@ function Home() {
                                         children: "📊 REPORTING"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 421,
+                                        lineNumber: 516,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "Analytics Hub"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 422,
+                                        lineNumber: 517,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1152,7 +1325,7 @@ function Home() {
                                         children: "Sales, item popularity, export reports — on‑prem."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 423,
+                                        lineNumber: 518,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1165,24 +1338,24 @@ function Home() {
                                             children: "insights"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 425,
+                                            lineNumber: 520,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 424,
+                                        lineNumber: 519,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 420,
+                                lineNumber: 515,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 390,
+                        lineNumber: 489,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1191,7 +1364,7 @@ function Home() {
                         children: "🔑 2FA & utilities"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 431,
+                        lineNumber: 525,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1205,14 +1378,14 @@ function Home() {
                                         children: "📀 PYPI · v0.1.1"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 435,
+                                        lineNumber: 528,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "allsafe‑otp"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 436,
+                                        lineNumber: 529,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1220,7 +1393,7 @@ function Home() {
                                         children: "Lightweight TOTP + QR generator. Simple 2FA for Python apps."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 437,
+                                        lineNumber: 530,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1234,7 +1407,7 @@ function Home() {
                                                 children: "PyPI"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 439,
+                                                lineNumber: 532,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -1243,19 +1416,19 @@ function Home() {
                                                 children: "generate_otp"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 440,
+                                                lineNumber: 533,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 438,
+                                        lineNumber: 531,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 434,
+                                lineNumber: 527,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1266,14 +1439,14 @@ function Home() {
                                         children: "📘 DOCS"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 445,
+                                        lineNumber: 537,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
                                         children: "Allsafe Docs"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 446,
+                                        lineNumber: 538,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1281,7 +1454,7 @@ function Home() {
                                         children: "Full documentation for all modules: auth, proxy, CLI, agent, flow."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 447,
+                                        lineNumber: 539,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1294,24 +1467,24 @@ function Home() {
                                             children: "visit docs"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 449,
+                                            lineNumber: 541,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 448,
+                                        lineNumber: 540,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 444,
+                                lineNumber: 536,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 432,
+                        lineNumber: 526,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1336,7 +1509,7 @@ function Home() {
                                 children: "📦 allsafe-auth 1.1.8 (PyPI)"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 456,
+                                lineNumber: 547,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -1352,7 +1525,7 @@ function Home() {
                                 children: "⚙️ allsafe-flow 1.1.4 (npm)"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 457,
+                                lineNumber: 548,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -1368,19 +1541,19 @@ function Home() {
                                 children: "🔑 allsafe-otp 0.1.1"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 458,
+                                lineNumber: 549,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 455,
+                        lineNumber: 546,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                lineNumber: 311,
+                lineNumber: 418,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("footer", {
@@ -1400,7 +1573,7 @@ function Home() {
                                         children: "ALLSAFEX"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 466,
+                                        lineNumber: 556,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -1410,13 +1583,13 @@ function Home() {
                                         children: "Balanced product ecosystem — Allsafe‑Access, allsafe‑auth, allsafe‑flow, Shonet RMS."
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 467,
+                                        lineNumber: 557,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 465,
+                                lineNumber: 555,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1426,85 +1599,85 @@ function Home() {
                                         children: "ALLSAFE‑ACCESS"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 470,
+                                        lineNumber: 560,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                                    href: "https://www.allsafex.com/docs/allsafe-proxy/overview",
+                                                    href: "https://allsafe-access.allsafex.com/docs/allsafe-proxy/overview",
                                                     target: "_blank",
                                                     rel: "noopener",
                                                     children: "allsafe-proxy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 472,
+                                                    lineNumber: 562,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 472,
+                                                lineNumber: 562,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                                    href: "https://www.allsafex.com/docs/allsafe-cli/overview",
+                                                    href: "https://allsafe-access.allsafex.com/docs/allsafe-cli/overview",
                                                     target: "_blank",
                                                     rel: "noopener",
                                                     children: "allsafe-cli"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 473,
+                                                    lineNumber: 563,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 473,
+                                                lineNumber: 563,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                                    href: "https://www.allsafex.com/docs/allsafe-agent/overview",
+                                                    href: "https://allsafe-access.allsafex.com/docs/allsafe-agent/overview",
                                                     target: "_blank",
                                                     rel: "noopener",
                                                     children: "allsafe-agent"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 474,
+                                                    lineNumber: 564,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 474,
+                                                lineNumber: 564,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
-                                                    href: "https://www.allsafex.com/docs/allsafe-admin/overview",
+                                                    href: "https://allsafe-access.allsafex.com/docs/allsafe-admin/overview",
                                                     target: "_blank",
                                                     rel: "noopener",
                                                     children: "allsafe-admin"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 475,
+                                                    lineNumber: 565,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 475,
+                                                lineNumber: 565,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 471,
+                                        lineNumber: 561,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 469,
+                                lineNumber: 559,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1514,7 +1687,7 @@ function Home() {
                                         children: "PACKAGES"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 479,
+                                        lineNumber: 569,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
@@ -1527,12 +1700,12 @@ function Home() {
                                                     children: "allsafe-auth (PyPI)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 481,
+                                                    lineNumber: 571,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 481,
+                                                lineNumber: 571,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
@@ -1543,12 +1716,12 @@ function Home() {
                                                     children: "allsafe-flow (npm)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 482,
+                                                    lineNumber: 572,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 482,
+                                                lineNumber: 572,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
@@ -1559,12 +1732,12 @@ function Home() {
                                                     children: "allsafe-otp (PyPI)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 483,
+                                                    lineNumber: 573,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 483,
+                                                lineNumber: 573,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
@@ -1575,24 +1748,24 @@ function Home() {
                                                     children: "Shonet RMS"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                    lineNumber: 484,
+                                                    lineNumber: 574,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                                lineNumber: 484,
+                                                lineNumber: 574,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                        lineNumber: 480,
+                                        lineNumber: 570,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 478,
+                                lineNumber: 568,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1607,7 +1780,7 @@ function Home() {
                                             children: "Principal Engineer"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 489,
+                                            lineNumber: 579,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -1618,12 +1791,12 @@ function Home() {
                                             children: "Daniel Destaw"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 490,
+                                            lineNumber: 580,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 490,
+                                            lineNumber: 580,
                                             columnNumber: 89
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
@@ -1631,7 +1804,7 @@ function Home() {
                                             children: "daniel.destaw@allsafex.com"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 491,
+                                            lineNumber: 581,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -1641,7 +1814,7 @@ function Home() {
                                             children: "📞 0988886692"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 492,
+                                            lineNumber: 582,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -1652,24 +1825,24 @@ function Home() {
                                             children: "maintainer of allsafe‑auth & allsafe‑flow"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                            lineNumber: 493,
+                                            lineNumber: 583,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                    lineNumber: 488,
+                                    lineNumber: 578,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                                lineNumber: 487,
+                                lineNumber: 577,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 464,
+                        lineNumber: 554,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -1681,13 +1854,13 @@ function Home() {
                         children: "© 2026 Allsafex — all products linked with accurate documentation."
                     }, void 0, false, {
                         fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                        lineNumber: 497,
+                        lineNumber: 587,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/allsafe-parents/pages/index.js",
-                lineNumber: 463,
+                lineNumber: 553,
                 columnNumber: 7
             }, this)
         ]

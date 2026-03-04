@@ -10,6 +10,8 @@
   "static/chunks/8ad4a_react_e5c12185._.js",
   "static/chunks/8ad4a_react-dom_cjs_react-dom_development_5e8e78bb.js",
   "static/chunks/8ad4a_react-dom_3adcb69b._.js",
+  "static/chunks/8ad4a_react-icons_fa_index_esm_1d588c29.js",
+  "static/chunks/8ad4a_react-icons_lib_esm_33243d08._.js",
   "static/chunks/8ad4a_97bb9652._.js"
 ],
     source: "entry"

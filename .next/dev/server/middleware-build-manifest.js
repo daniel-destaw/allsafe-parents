@@ -10,9 +10,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/8ad4a_react_e5c12185._.js",
       "static/chunks/8ad4a_react-dom_cjs_react-dom_development_5e8e78bb.js",
       "static/chunks/8ad4a_react-dom_3adcb69b._.js",
+      "static/chunks/8ad4a_react-icons_fa_index_esm_1d588c29.js",
+      "static/chunks/8ad4a_react-icons_lib_esm_33243d08._.js",
       "static/chunks/8ad4a_97bb9652._.js",
       "static/chunks/Desktop_allsafe-parents_pages_index_2da965e7._.js",
-      "static/chunks/turbopack-Desktop_allsafe-parents_pages_index_a918dd70._.js"
+      "static/chunks/turbopack-Desktop_allsafe-parents_pages_index_68e56b85._.js"
     ],
     "/_app": [
       "static/chunks/8ad4a_next_dist_compiled_baf947e4._.js",
