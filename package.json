@@ -1,1 +1,1 @@
-{"name":"shonet-website","version":"1.0.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","export":"next export"},"dependencies":{"next":"^16.1.6","react":"^18.2.0","react-dom":"^18.2.0","react-icons":"^4.12.0"}}
+{"name":"shonet-website","version":"1.0.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","export":"next export"},"dependencies":{"next":"^16.1.6","react":"^18.2.0","react-dom":"^18.2.0","react-icons":"^4.12.0","react-syntax-highlighter":"^16.1.1"}}

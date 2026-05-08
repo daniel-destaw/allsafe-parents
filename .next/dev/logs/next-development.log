@@ -1,8 +1,31 @@
-[00:00:11.261] Server  LOG     ✓ Ready in 9.6s
-[00:00:14.333] Server  LOG     ○ Compiling / ...
-[00:00:16.704] Server  WARN    ⚠ Cross origin request detected from 10.195.130.15 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:13:37.037] Server  LOG     ✓ Compiled in 28ms
-[00:19:16.015] Server  LOG     ✓ Compiled in 112ms
-[00:26:03.382] Server  LOG     ✓ Compiled in 45ms
-[00:30:08.758] Server  LOG     ✓ Compiled in 7.5s
+[00:00:14.227] Server  LOG     ✓ Ready in 8.9s
+[00:00:17.298] Server  LOG     ○ Compiling / ...
+[00:00:20.752] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:00:25.847] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:02:16.627] Browser LOG     Refreshing page data due to server-side change
+[00:02:16.798] Server  LOG     ✓ Compiled in 272ms
+[00:02:18.864] Server  LOG     ✓ Compiled in 58ms
+[00:02:29.337] Server  LOG     ✓ Compiled in 53ms
+[00:02:33.753] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s style "width:143.4739398403499px;height:99.99880838015171px;top:30.93137649970452%;left:1.3559007858849448%;animation-delay:3.9721986819491164s;animation-duration:17.724380772699405s" "width:87.42101686486654px;height:108.05019717455431px;top:10.199426771299901%;left:15.383788026814372%;animation-delay:3.9822512646205106s;animation-duration:9.99953373805673s" 
+    at div
+    at section
+    at Home (http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js:485:202)
+    at App (http://localhost:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://localhost:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://localhost:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://localhost:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://localhost:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://localhost:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://localhost:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+[00:02:39.936] Browser LOG     Refreshing page data due to server-side change
+[00:02:39.937] Server  LOG     ✓ Compiled in 99ms
+[00:02:40.430] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:02:40.978] Server  LOG     ✓ Compiled in 124ms
+[00:02:40.999] Browser LOG     Refreshing page data due to server-side change
+[00:05:53.550] Server  LOG     ✓ Compiled in 73ms
+[00:06:43.544] Server  LOG     ✓ Compiled in 58ms
+[00:06:47.985] Server  LOG     ✓ Compiled in 115ms
+[00:08:22.635] Server  LOG     ✓ Compiled in 75ms
