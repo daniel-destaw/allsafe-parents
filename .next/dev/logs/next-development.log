@@ -29,3 +29,130 @@ See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-comp
 [00:06:43.544] Server  LOG     ✓ Compiled in 58ms
 [00:06:47.985] Server  LOG     ✓ Compiled in 115ms
 [00:08:22.635] Server  LOG     ✓ Compiled in 75ms
+[00:15:18.371] Server  LOG     ✓ Compiled in 155ms
+[00:15:27.685] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:15:28.856] Server  WARN    ⚠ Cross origin request detected from 10.195.130.14 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:15:32.870] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:15:53.079] Server  LOG     ✓ Compiled in 65ms
+[00:30:23.925] Browser ERROR   Warning: Extra attributes from the server: %s%s style 
+    at nav
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js?id=%255Bproject%255D%252Fallsafe-parents%252Fpages%252Findex.js+%255Bclient%255D+%2528ecmascript%2529:21:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+[00:30:24.108] Browser ERROR   Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. div
+[00:30:24.174] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.174] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: Hydration failed because the initial UI does not match what was rendered on the server.
+[00:30:24.333] Browser ERROR   uncaughtError: Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+[00:30:37.228] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s style "width:82.03324852108919px;height:55.928470826422384px;top:88.56712109040261%;left:84.9077236891455%;animation-delay:0.1548047271664188s;animation-duration:15.722630123726661s" "width:89.5934677924303px;height:132.50916899771656px;top:16.742831761474562%;left:85.26397001700013%;animation-delay:0.931567473237771s;animation-duration:12.752280805099979s" 
+    at div
+    at section
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js:485:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+[00:31:19.512] Browser LOG     Refreshing page data due to server-side change
+[00:31:19.512] Browser LOG     Refreshing page data due to server-side change
+[00:31:21.512] Browser LOG     Refreshing page data due to server-side change
+[00:31:21.513] Browser LOG     Refreshing page data due to server-side change
+[00:31:21.751] Server  LOG     ✓ Compiled in 4.5s
+[00:35:53.820] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s style "width:42.82292789930941px;height:88.94372725201677px;top:40.924609017396385%;left:70.24066091935038%;animation-delay:1.7269036255130665s;animation-duration:10.295115978121782s" "width:104.16618990905025px;height:42.68210511932796px;top:55.42562011259539%;left:57.83583057718381%;animation-delay:0.5868274157484482s;animation-duration:8.295541377652365s" 
+    at div
+    at section
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js:485:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+[00:36:30.509] Browser ERROR   Warning: Prop `%s` did not match. Server: %s Client: %s%s style "width:125.08680403559897px;height:149.35620433302427px;top:38.38144832082604%;left:93.08476919667801%;animation-delay:0.856845769624135s;animation-duration:12.94133565681675s" "width:100.70575693023112px;height:82.9451031321784px;top:88.90296488747256%;left:34.03922240997803%;animation-delay:2.6087714385849914s;animation-duration:11.983675970221748s" 
+    at div
+    at section
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js:485:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+[00:41:02.555] Server  LOG     ✓ Compiled in 279ms
+[00:41:03.513] Browser ERROR   uncaughtError: ReferenceError: FaChartBar is not defined
+[00:41:03.513] Browser ERROR   uncaughtError: ReferenceError: FaChartBar is not defined
+[00:41:03.513] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js?id=%255Bproject%255D%252Fallsafe-parents%252Fpages%252Findex.js+%255Bclient%255D+%2528ecmascript%2529:87:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:41:13.649] Server  ERROR   ReferenceError: FaChartBar is not defined
+[00:41:13.766] Server  ERROR   ⨯ ReferenceError: FaChartBar is not defined
+[00:41:13.839] Server  ERROR   ⨯ ReferenceError: FaChartBar is not defined
+[00:41:17.947] Browser ERROR   uncaughtError: ReferenceError: FaChartBar is not defined
+[00:45:51.448] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:45:51.621] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:45:51.646] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:45:52.440] Server  LOG     ✓ Compiled in 114ms
+[00:45:56.711] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:46:48.462] Server  LOG     ✓ Compiled in 21ms
+[00:46:52.586] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:46:53.858] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:52:41.196] Server  LOG     ✓ Compiled in 67ms
+[00:52:45.472] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:52:46.763] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"). Use Document instead. 
+See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
+[00:52:57.954] Server  LOG     ✓ Compiled in 39ms
+[00:53:32.790] Server  LOG     ✓ Compiled in 93ms
+[00:53:40.305] Server  LOG     ✓ Compiled in 59ms
+[00:53:40.394] Browser LOG     Refreshing page data due to server-side change
+[00:53:40.394] Browser ERROR   uncaughtError: ReferenceError: FaChartBar is not defined
+[00:53:40.394] Browser ERROR   uncaughtError: ReferenceError: FaChartBar is not defined
+[00:53:40.394] Browser ERROR   The above error occurred in the <Home> component:
+
+    at Home (http://10.195.130.14:3000/_next/static/chunks/%5Broot-of-the-server%5D__a82f5d69._.js?id=%255Bproject%255D%252Fallsafe-parents%252Fpages%252Findex.js+%255Bclient%255D+%2528ecmascript%2529:87:202)
+    at App (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:2116:1)
+    at PathnameContextProviderAdapter (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_shared_lib_bbce04f9._.js:5355:43)
+    at PagesDevOverlayErrorBoundary (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1117:9)
+    at PagesDevOverlayBridge (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_d3a88d8b._.js:1894:34)
+    at Container (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3085:1)
+    at AppContainer (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3184:25)
+    at Root (http://10.195.130.14:3000/_next/static/chunks/e17a5_next_dist_client_3cdb964b._.js:3392:17)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, PagesDevOverlayErrorBoundary.
+[00:53:44.149] Server  LOG     ✓ Compiled in 144ms
+[00:59:51.790] Server  LOG     ✓ Compiled in 163ms
+[01:07:15.615] Server  LOG     ✓ Compiled in 6.7s

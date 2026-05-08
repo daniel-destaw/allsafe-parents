@@ -14,6 +14,21 @@
       "static/chunks/[root-of-the-server]__020c7978._.js",
       "static/chunks/allsafe-parents_pages__app_2da965e7._.js",
       "static/chunks/turbopack-allsafe-parents_pages__app_df5fc39a._.js"
+    ],
+    "/_error": [
+      "static/chunks/e17a5_next_dist_compiled_b0288eec._.js",
+      "static/chunks/e17a5_next_dist_shared_lib_2507db9f._.js",
+      "static/chunks/e17a5_next_dist_client_3cdb964b._.js",
+      "static/chunks/e17a5_next_dist_152cebc1._.js",
+      "static/chunks/e17a5_next_error_2f9522cb.js",
+      "static/chunks/[next]_entry_page-loader_ts_cefc994c._.js",
+      "static/chunks/e17a5_react_00af3544._.js",
+      "static/chunks/e17a5_react-dom_cjs_react-dom_development_d254a392.js",
+      "static/chunks/e17a5_react-dom_44a9b12b._.js",
+      "static/chunks/e17a5_161210b3._.js",
+      "static/chunks/[root-of-the-server]__4a918a1f._.js",
+      "static/chunks/allsafe-parents_pages__error_2da965e7._.js",
+      "static/chunks/turbopack-allsafe-parents_pages__error_32c672e7._.js"
     ]
   },
   "devFiles": [],

@@ -9,7 +9,7 @@ import {
   FaBrain, FaLock, FaNetworkWired, FaCodeBranch, FaCloud,
   FaGlobe, FaQrcode, FaDatabase, FaPython, FaNpm, FaCalendarAlt,
   FaUsersCog, FaUserShield, FaChartBar, FaMobileAlt, FaCopy,
-  FaCode
+  FaCode, FaStar, FaInfinity, FaMicrochip, FaCpu
 } from 'react-icons/fa';
 import { useState } from 'react';
 
@@ -627,6 +627,100 @@ generate_qr_code(otp_url)`;
             background: rgba(255, 107, 53, 0.1);
           }
 
+          /* Founder Section Styles */
+          .founder-section {
+            margin: 80px auto 60px;
+            max-width: 1200px;
+          }
+          .founder-card {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(168,85,247,0.05));
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          .founder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(255, 107, 53, 0.5);
+          }
+          .founder-image {
+            flex: 0 0 280px;
+            text-align: center;
+            padding: 2rem;
+          }
+          .founder-image img {
+            width: 220px;
+            height: 220px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid var(--orange-primary);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+          }
+          .founder-details {
+            flex: 1;
+            padding: 2rem 2rem 2rem 0;
+          }
+          .founder-details h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, var(--orange-soft));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+          }
+          .founder-title {
+            color: var(--orange-glow);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+          }
+          .founder-bio {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+          }
+          .founder-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+          }
+          .founder-contact a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+          }
+          .founder-contact a:hover {
+            color: var(--orange-primary);
+          }
+          @media (max-width: 768px) {
+            .founder-card {
+              flex-direction: column;
+              text-align: center;
+            }
+            .founder-details {
+              padding: 1rem 1.5rem 2rem;
+            }
+            .founder-contact {
+              justify-content: center;
+            }
+            .founder-image img {
+              width: 160px;
+              height: 160px;
+            }
+          }
+
           footer {
             background: var(--bg-elevated);
             padding: 70px 8% 30px;
@@ -1079,6 +1173,38 @@ generate_qr_code(otp_url)`;
             </ul>
             <div className="link-group">
               <a href="https://allsafe-access.allsafex.com/docs" target="_blank" className="primary-link">visit docs →</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Meet the Founder Section */}
+        <div className="founder-section" id="founder">
+          <div className="section-header">
+            <div className="section-tag">LEADERSHIP</div>
+            <h2>Meet the Founder</h2>
+            <p>The vision behind Allsafex</p>
+          </div>
+          <div className="founder-card">
+            <div className="founder-image">
+              <Image src="/assets/daniel.png" alt="Daniel Destaw - Founder of Allsafex" width={220} height={220} priority />
+            </div>
+            <div className="founder-details">
+              <h3>Daniel Destaw</h3>
+              <div className="founder-title">Principal Engineer & Founder</div>
+              <p className="founder-bio">
+                Daniel Destaw is the Principal Engineer and founder of Allsafex, a platform dedicated to delivering 
+                open-source cybersecurity and AI solutions across multiple domains. With a passion for secure software 
+                architecture and intelligent systems, Daniel leads the development of Allsafex's core products including 
+                the Allsafe‑Access Suite, allsafe‑auth, allsafe‑flow, and allsafe‑otp. His vision is to make enterprise-grade 
+                security and AI accessible to developers and organizations worldwide through open-source technology.
+              </p>
+              <div className="founder-contact">
+                <a href="mailto:daniel.destaw@allsafex.com"><FaEnvelope /> daniel.destaw@allsafex.com</a>
+                <a href="tel:+251988886692"><FaPhone /> 0988886692</a>
+                <a href="#" target="_blank"><FaGithub /> GitHub</a>
+                <a href="#" target="_blank"><FaLinkedin /> LinkedIn</a>
+                <a href="#" target="_blank"><FaTwitter /> Twitter</a>
+              </div>
             </div>
           </div>
         </div>
