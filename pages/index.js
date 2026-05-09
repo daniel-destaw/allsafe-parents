@@ -9,15 +9,32 @@ import {
   FaBrain, FaLock, FaNetworkWired, FaCodeBranch, FaCloud,
   FaGlobe, FaQrcode, FaDatabase, FaPython, FaNpm, FaCalendarAlt,
   FaUsersCog, FaUserShield, FaChartBar, FaMobileAlt, FaCopy,
-  FaCode, FaStar, FaInfinity, FaMicrochip, FaCpu
+  FaCode, FaStar, FaInfinity, FaMicrochip, FaCpu, FaComments,
+  FaPaperPlane, FaTrash, FaRegLightbulb, FaCrown, FaRobot
 } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Home() {
   const [copiedAuth, setCopiedAuth] = useState(false);
   const [copiedOtp, setCopiedOtp] = useState(false);
   const [copiedFlow, setCopiedFlow] = useState(false);
   const [expandedCode, setExpandedCode] = useState(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { 
+      role: 'assistant', 
+      content: "Hey there! 👋 I'm Allsafex AI, your product expert. Ask me anything about:\n\n• **allsafe-auth** (TOTP, AD, MFA)\n• **allsafe-flow** (Service orchestration)\n• **allsafe-otp** (2FA, QR codes)\n• **Allsafe-Access Suite** (Remote access)\n• **Shonet RMS** (Restaurant POS)\n\nWhat would you like to explore today?" 
+    }
+  ]);
+  const [inputMessage, setInputMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);
@@ -36,6 +53,109 @@ export default function Home() {
   const toggleCode = (id) => {
     setExpandedCode(expandedCode === id ? null : id);
   };
+
+  const clearChat = () => {
+    setMessages([
+      { 
+        role: 'assistant', 
+        content: "Chat cleared! 👋 I'm still here to help with any Allsafex products. What would you like to know?" 
+      }
+    ]);
+  };
+
+
+
+
+const sendMessage = async () => {
+  if (!inputMessage.trim() || isLoading) return;
+
+  const userMessage = inputMessage.trim();
+  setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+  setInputMessage('');
+  setIsLoading(true);
+
+  const knowledgeBase = `You are Allsafex AI Assistant, a friendly product expert. RULES:
+
+1. For greetings like "hi", "hello", "hey", "how are you" - respond warmly and introduce yourself
+2. For questions about Allsafex products - provide helpful answers
+3. For ANY OTHER questions - respond with: "I can only answer questions about Allsafex products: allsafe-auth, allsafe-flow, allsafe-otp, Allsafe-Access Suite, or Shonet RMS."
+
+ALLOWED PRODUCTS:
+
+1. allsafe-auth - Python authentication library
+   - Install: pip install allsafe-auth
+   - Features: Active Directory/LDAP, TOTP/HOTP MFA, QR codes, Django integration
+   - Version: v1.1.8 on PyPI
+
+2. allsafe-flow - Node.js service orchestrator
+   - Install: npm install -g allsafe-flow
+   - Features: YAML config, health checks, color-coded logs
+   - Commands: start, stop, restart, status
+   - Version: v1.1.4 on npm
+
+3. allsafe-otp - Python OTP library
+   - Install: pip install allsafe-otp
+   - Features: TOTP generation, QR codes for Google Authenticator
+   - Version: v0.1.1 on PyPI
+
+4. Allsafe-Access Suite - Remote access platform
+   - Components: allsafe-proxy, allsafe-cli, allsafe-agent, allsafe-admin
+   - Docs: allsafe-access.allsafex.com
+
+5. Shonet RMS - Restaurant POS system
+   - Components: Shonet Master (Windows), Shonet Waiter (Android), Kitchen Display, Analytics Hub
+   - Website: shonet.allsafex.com
+
+Company: Allsafex, Founder: Daniel Destaw, Email: daniel.destaw@allsafex.com`;
+
+  try {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`  // ← THIS IS THE FIX
+      },
+      body: JSON.stringify({
+        model: 'inclusionai/ring-2.6-1t:free',
+        messages: [
+          {
+            role: 'system',
+            content: knowledgeBase
+          },
+          {
+            role: 'user',
+            content: userMessage
+          }
+        ],
+        temperature: 0.1,
+        max_tokens: 500
+      })
+    });
+
+    const data = await response.json();
+    console.log('API Response:', data);
+    
+    let botReply;
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      botReply = data.choices[0].message.content;
+    } else if (data.error) {
+      console.error('API Error:', data.error);
+      botReply = "I can only answer questions about Allsafex products: allsafe-auth, allsafe-flow, allsafe-otp, Allsafe-Access Suite, or Shonet RMS.";
+    } else {
+      botReply = "I can only answer questions about Allsafex products.";
+    }
+    
+    setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
+  } catch (error) {
+    console.error('Chat error:', error);
+    setMessages(prev => [...prev, { role: 'assistant', content: 'I can only answer questions about Allsafex products. Please ask about allsafe-auth, allsafe-flow, allsafe-otp, Allsafe-Access Suite, or Shonet RMS.' }]);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
+
 
   const totpCodeExample = `from allsafe_auth.authentication.totp import TOTP
 from allsafe_auth.utils.qr_code_generator import QRCodeGenerator
@@ -627,7 +747,6 @@ generate_qr_code(otp_url)`;
             background: rgba(255, 107, 53, 0.1);
           }
 
-          /* Founder Section Styles */
           .founder-section {
             margin: 80px auto 60px;
             max-width: 1200px;
@@ -704,85 +823,263 @@ generate_qr_code(otp_url)`;
           .founder-contact a:hover {
             color: var(--orange-primary);
           }
-          @media (max-width: 768px) {
-            .founder-card {
-              flex-direction: column;
-              text-align: center;
+
+          .chat-toggle-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-glow));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 9998;
+            color: white;
+            font-size: 24px;
+          }
+          .chat-toggle-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.6);
+          }
+          .chat-window {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 33.333vw;
+            min-width: 320px;
+            max-width: 500px;
+            height: 100vh;
+            background: var(--bg-card);
+            border-left: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(100%);
             }
-            .founder-details {
-              padding: 1rem 1.5rem 2rem;
+            to {
+              opacity: 1;
+              transform: translateX(0);
             }
-            .founder-contact {
-              justify-content: center;
+          }
+          .chat-header {
+            background: linear-gradient(135deg, rgba(255,107,53,0.95), rgba(232,93,4,0.95));
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+          }
+          .chat-header h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+          .chat-header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+          }
+          .clear-chat-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 14px;
+          }
+          .clear-chat-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+          }
+          .close-chat {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s;
+          }
+          .close-chat:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+          }
+          .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(10, 10, 10, 0.8);
+          }
+          .chat-messages::-webkit-scrollbar {
+            width: 6px;
+          }
+          .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+          }
+          .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--orange-primary);
+            border-radius: 3px;
+          }
+          .message {
+            max-width: 90%;
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            animation: messageAppear 0.2s ease;
+          }
+          @keyframes messageAppear {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
             }
-            .founder-image img {
-              width: 160px;
-              height: 160px;
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .message.user {
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 6px;
+            box-shadow: 0 2px 8px rgba(255,107,53,0.3);
+          }
+          .message.assistant {
+            background: var(--bg-elevated);
+            color: var(--text-white);
+            align-self: flex-start;
+            border-bottom-left-radius: 6px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          }
+          .message.assistant strong, .message.assistant b {
+            color: var(--orange-glow);
+          }
+          .message.assistant a {
+            color: var(--orange-primary);
+            text-decoration: none;
+          }
+          .chat-input-area {
+            padding: 20px 24px;
+            border-top: 1px solid rgba(255, 107, 53, 0.15);
+            background: var(--bg-card);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+          }
+          .chat-input {
+            flex: 1;
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 24px;
+            padding: 12px 18px;
+            color: var(--text-white);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s;
+            font-family: inherit;
+          }
+          .chat-input:focus {
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 0 2px rgba(255,107,53,0.2);
+          }
+          .chat-input::placeholder {
+            color: var(--text-dim);
+          }
+          .chat-send-btn {
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.2s;
+            font-size: 16px;
+          }
+          .chat-send-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 2px 12px rgba(255,107,53,0.5);
+          }
+          .chat-send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+          .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 12px 18px;
+            background: var(--bg-elevated);
+            border-radius: 20px;
+            width: fit-content;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            align-self: flex-start;
+          }
+          .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--orange-glow);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+          }
+          .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+          @keyframes typing {
+            0%, 60%, 100% {
+              transform: translateY(0);
+              opacity: 0.4;
+            }
+            30% {
+              transform: translateY(-8px);
+              opacity: 1;
             }
           }
 
-          footer {
-            background: var(--bg-elevated);
-            padding: 70px 8% 30px;
-            border-top: 1px solid rgba(255, 107, 53, 0.2);
-            margin-top: 60px;
-          }
-          .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.8fr;
-            gap: 3rem;
-            padding-bottom: 3rem;
-          }
-          .footer-col h5 {
-            color: var(--orange-glow);
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 1.5rem;
-          }
-          .footer-col ul {
-            list-style: none;
-          }
-          .footer-col li {
-            margin-bottom: 0.8rem;
-          }
-          .footer-col a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: color 0.2s;
-            font-size: 0.9rem;
-          }
-          .footer-col a:hover {
-            color: var(--orange-primary);
-          }
-          .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1rem;
-          }
-          .footer-logo-image {
-            position: relative;
-            width: 45px;
-            height: 45px;
-          }
-          .footer-logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-glow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
-          .admin-card {
-            background: rgba(255, 107, 53, 0.05);
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            border-left: 3px solid var(--orange-primary);
-          }
-          .admin-card span {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--orange-glow);
+          @media (max-width: 1024px) {
+            .chat-window {
+              width: 50vw;
+            }
           }
 
           @media (max-width: 768px) {
@@ -793,11 +1090,18 @@ generate_qr_code(otp_url)`;
             .catalog { padding: 0 20px; }
             .section-header h2 { font-size: 1.8rem; }
             .domain-strip { flex-direction: column; align-items: center; }
+            .chat-window {
+              width: 85vw;
+              min-width: 280px;
+            }
           }
 
           @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .hero .sub { font-size: 1rem; }
+            .chat-window {
+              width: 100vw;
+            }
           }
         `}</style>
       </Head>
@@ -852,7 +1156,6 @@ generate_qr_code(otp_url)`;
       </section>
 
       <main className="catalog">
-        {/* Allsafe-Access Suite */}
         <div className="section-header" id="allsafe-access">
           <div className="section-tag">CORE PLATFORM</div>
           <h2>Allsafe‑Access Suite</h2>
@@ -929,7 +1232,6 @@ generate_qr_code(otp_url)`;
           </div>
         </div>
 
-        {/* allsafe-auth */}
         <div className="section-header" id="allsafe-auth" style={{ marginTop: '80px' }}>
           <div className="section-tag">AUTHENTICATION</div>
           <h2>allsafe‑auth</h2>
@@ -988,7 +1290,6 @@ generate_qr_code(otp_url)`;
           </div>
         </div>
 
-        {/* allsafe-flow */}
         <div className="section-header" id="allsafe-flow" style={{ marginTop: '80px' }}>
           <div className="section-tag">ORCHESTRATION</div>
           <h2>allsafe‑flow</h2>
@@ -1047,7 +1348,6 @@ generate_qr_code(otp_url)`;
           </div>
         </div>
 
-        {/* Shonet RMS */}
         <div className="section-header" id="shonet" style={{ marginTop: '80px' }}>
           <div className="section-tag">HOSPITALITY</div>
           <h2>Shonet RMS</h2>
@@ -1117,7 +1417,6 @@ generate_qr_code(otp_url)`;
           </div>
         </div>
 
-        {/* allsafe-otp */}
         <div className="section-header" id="otp" style={{ marginTop: '80px' }}>
           <div className="section-tag">SECURITY</div>
           <h2>allsafe‑otp</h2>
@@ -1177,7 +1476,6 @@ generate_qr_code(otp_url)`;
           </div>
         </div>
 
-        {/* Meet the Founder Section */}
         <div className="founder-section" id="founder">
           <div className="section-header">
             <div className="section-tag">LEADERSHIP</div>
@@ -1265,6 +1563,67 @@ generate_qr_code(otp_url)`;
           © 2026 Allsafex — Open-source cybersecurity and AI infrastructure
         </div>
       </footer>
+
+      {!chatOpen && (
+        <button className="chat-toggle-btn" onClick={() => setChatOpen(true)}>
+          <FaRobot />
+        </button>
+      )}
+
+      {chatOpen && (
+        <div className="chat-window">
+          <div className="chat-header">
+            <h4>
+              <FaBrain style={{ fontSize: '18px' }} /> 
+              Allsafex AI
+              <span style={{ fontSize: '11px', background: 'rgba(255,255,255,0.2)', padding: '2px 8px', borderRadius: '12px', marginLeft: '8px' }}>Beta</span>
+            </h4>
+            <div className="chat-header-actions">
+              <button className="clear-chat-btn" onClick={clearChat} title="Clear conversation">
+                <FaTrash />
+              </button>
+              <button className="close-chat" onClick={() => setChatOpen(false)}>
+                ✕
+              </button>
+            </div>
+          </div>
+          <div className="chat-messages">
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`message ${msg.role}`}>
+                {msg.role === 'assistant' && <FaRobot style={{ fontSize: '12px', marginRight: '8px', color: 'var(--orange-glow)' }} />}
+                {msg.content.split('\n').map((line, i) => (
+                  <div key={i}>
+                    {line}
+                    {i < msg.content.split('\n').length - 1 && <br />}
+                  </div>
+                ))}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+          <div className="chat-input-area">
+            <input
+              type="text"
+              className="chat-input"
+              placeholder="Ask about Allsafex products..."
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+              disabled={isLoading}
+            />
+            <button className="chat-send-btn" onClick={sendMessage} disabled={isLoading || !inputMessage.trim()}>
+              <FaPaperPlane />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

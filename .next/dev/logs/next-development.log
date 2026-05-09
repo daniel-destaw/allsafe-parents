@@ -156,3 +156,5 @@ React will try to recreate this component tree from scratch using the error boun
 [00:53:44.149] Server  LOG     ✓ Compiled in 144ms
 [00:59:51.790] Server  LOG     ✓ Compiled in 163ms
 [01:07:15.615] Server  LOG     ✓ Compiled in 6.7s
+[01:56:12.787] Server  LOG     ✓ Compiled in 90ms
+[01:56:17.046] Server  LOG     ✓ Compiled in 112ms
